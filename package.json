@@ -1,0 +1,70 @@
+{
+  "name": "trees-rest-server",
+  "version": "1.0.0",
+  "description": "REST API to serve trees data using node.js, express, babel, dotenv, eslint, prettier...",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raultruco/trees-rest-server"
+  },
+  "homepage": "https://github.com/raultruco/trees-rest-server",
+  "bugs": {
+    "url": "https://github.com/raultruco/trees-rest-server/issues",
+    "email": "raultruco@gmail.com"
+  },
+  "author": "Raul Truco <raultruco@gmail.com>",
+  "license": "GPL-3.0",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=10.20.0",
+    "yarn": ">=1.21.0"
+  },
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "nodemon src/index.js --exec \"babel-node -r dotenv/config\"",
+    "devlint": "nodemon src/index.js --exec babel-node \"node -r dotenv/config\" | yarn run lint",
+    "clean": "rm -rf build",
+    "build": "yarn run clean && mkdir -p build && babel src -s -D -d build",
+    "test:watch": "jest --watch --setupFiles dotenv/config",
+    "test": "jest --detectOpenHandles --setupFiles dotenv/config",
+    "format": "prettier --write \"src/**/*.{js}\" \"test/**/*.{js}\"",
+    "lint": "eslint \"src/**/*.{js}\" \"test/**/*.{js}\" --quiet"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.9.6",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.1",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.9.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "supertest": "^4.0.2"
+  },
+  "nodemonConfig": {
+    "verbose": false,
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "ext": ".js,.json"
+  },
+  "directories": {
+    "src": "./src",
+    "test": "./test"
+  }
+}
