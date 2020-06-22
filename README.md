@@ -68,7 +68,7 @@ The available endpoints:
 ### Caveats and future work
 
 - All the date manipulations has been done using the Javascript Date object. In the case we needed more complex operations, consider using an external module (date-fns, moment, etc).
-- All the dates are treated as local. For proper localization, use list date/times
+- All the dates are treated as local. For proper localization, use UTC date/times
 - For bigger datasets, consider a different structure for the internal database.
 
   The current database looks like this:
@@ -85,7 +85,7 @@ The available endpoints:
 
   When a query is executed, `totalsByDay` aggregated is iterated day by day for the date range provided. Every day's lookup has a cost of `O(logN)`. So, for a 365 range, the total lookup cost is 365\*O(logN)
 
-  A possible alternative could have been using nested arrays like this:
+  A possible alternative could have been using nested arrays of years, months and days, and straight indices to access each of them:
 
   ```javascript
     ...
@@ -94,16 +94,22 @@ The available endpoints:
         /*january 2015*/ [
           /*1st january 2015*/ [/*total*/ 5],
           /*2nd january 2015*/ [/*total*/ 3],
+          /* ... */
         ],
-        // ...
+        /* ... */
       ],
       /*2016*/[
-        // ...
+        /*january 2016*/ [
+          /*1st january 2016*/ [/*total*/ 18],
+          /*2nd january 2016*/ [/*total*/ 26],
+          /* ... */
+        ],
       ],
+      /* ... */
     ]
   ```
 
-  Where the total lookup cost is roughly O(log(n)).
+  Where the total lookup cost is roughly O(logN).
 
 ### Linting
 
