@@ -103,7 +103,7 @@ The available endpoints:
     ]
   ```
 
-  Where the total lookup cost is roughly O(1).
+  Where the total lookup cost is roughly O(log(n)).
 
 ### Linting
 
