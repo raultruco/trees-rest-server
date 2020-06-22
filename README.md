@@ -31,10 +31,10 @@ Listening on port 8081
 
 The API returns lists of data from a date range provided. Each data item contains:
 
-- `date`: Day of the time serie, in the format <year><month><day>
+- `date`: Day of the time serie, in the format &lt;year&gt;&lt;month&gt;&lt;day&gt;
 - `total`: Total trees planted on the day serie
 
-For example, the total number of trees planted on 29th March 2020:
+For example, the total number of trees planted on 29th March 2020 is represented as:
 
 ```json
 {
@@ -111,6 +111,26 @@ The available endpoints:
 
   Where the total lookup cost is roughly O(logN).
 
+### Testing
+
+- Run unit tests:
+
+```sh
+yarn run test
+```
+
+- In watch mode:
+
+```sh
+yarn run test:watch
+```
+
+- Run test matching especific name "routes":
+
+```sh
+yarn run test -- -t="routes"
+```
+
 ### Linting
 
 Linting is set up using [ESLint](http://eslint.org/). It uses ESLint's default [eslint:recommended](https://github.com/eslint/eslint/blob/master/conf/eslint.json) rules.
@@ -137,15 +157,15 @@ Fixing linting errors one by one is a tedious task. That’s where Prettier come
 
 To set up prettier with VSCode install the [Prettier - Code formatter plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 
-To allow VSCode to format your code automatically when files are saved activate the option "formatOnSave" in either of the following ways:
-2.1) Create a .vscode file in your project's root directory containing:
+To allow VSCode to format your code automatically when files are saved activate the option "formatOnSave" in either of the following ways:  
+ 2.1) Create a .vscode file in your project's root directory containing:
 `{ "editor.formatOnSave": true, }`
 
-    2.2) Go to user or workspace settings and activate "Editor: Format On Save"
+2.2) Go to user or workspace settings and activate "Editor: Format On Save"
 
 ### Environmental variables in development
 
-The project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example`, rename it to `.env` and add your env vars values.
+The project uses [dotenv](https://www.npmjs.com/package/dotenv) for setting environmental variables during development. Simply copy `.env.example`, rename it to `.env` and add your env vars values. There are default values defined in the config helper module `/config.js`.
 
 ### Deployment
 
@@ -166,28 +186,6 @@ yarn start
 will run the compiled application from the `/build` folder.
 
 The last command is generally what most hosting providers use to start your application when deployed, so it should take care of everything.
-
-### Testing
-
-(not implemented)
-
-- Unit tests:
-
-```sh
-yarn run test
-```
-
-- In watch mode:
-
-```sh
-yarn run test:watch
-```
-
-- Run test matching especific name "routes":
-
-```sh
-yarn run test -- -t="routes"
-```
 
 ## License
 
